@@ -1,1 +1,23 @@
+spring:
+  cloud:
+    gateway:
+      default-filters:
+        - name: GlobalFilter
+          args:
+            baseMessage: global filter
+            preLogger: true
+            postLogger: true
+      routes:
+        - id: test-service
+          uri: http://localhost:8080/
+          predicates:
+            - Path=/v1.0/tests/**
+          filters:
+            - name: TestFilter
+              args:
+                baseMessage: test test filter
+                preLogger: true
+                postLogger: true
 
+server:
+  port: 9090
