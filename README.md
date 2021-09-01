@@ -39,16 +39,26 @@ dependencyManagement {
 - filter의 경우 AbstractGatewayFilterFactory를 상속 받도록 작성해 Class명을 넣어주고, 인자또한 지정할 수 있다.
 - route 설정의 predicates를 통해 Path를 지정해 요청을 route할 수 있으며 Route별로 filter적용이 가능하다.
 - 별도의 filter없이 predicates를 통해 특정 시간 이후 혹은 특정 헤더를 포함한 요청만 허용하도록 설정할 수 있다.
-- After
+- After : 특정 시간 이후부터 라우팅 처리
   ```
   routes:
     - id: time-service
       uri: http://localhost:8080/
       predicates:
         - Path=/v1.0/time/**
-        - After=2021-08-31T16:46:00.0000+09:00[Asia/Seoul]
+        - After=2021-08-31T16:46:00.000+09:00[Asia/Seoul]
   ```
-- Header 
+- Before : 특정 시간 이전까지만 라우팅 처리 (해당 시간 이후부터 라우팅 처리하지 않음음
+- Between : 특정 시간 사이이에만 라우팅 처리
+  ```
+  routes:
+    - id: time-service
+      uri: http://localhost:8080/
+      predicates:
+        - Path=/v1.0/time/**
+        - Between=2021-08-31T00:00:00.000+09:00[Asia/Seoul], 2021-09-05T00:00:00.000+09:00[Asia/Seoul]
+  ```
+- Header : 특정 헤더 포함한 요청만 라우팅 처리
   ```
   routes:
     - id: time-service
