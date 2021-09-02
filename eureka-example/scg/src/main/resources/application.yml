@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: scg
+  cloud:
+    gateway:
+      default-filters:
+        - name: GlobalFilter
+          args:
+            baseMessage: global filter
+            preLogger: true
+            postLogger: true
+      routes:
+        - id: time-service
+          uri: http://localhost:8080/
+          predicates:
+            - Path=/v1.0/time/**
+            - After=2021-08-31T16:46:00.0000+09:00[Asia/Seoul]
+        - id: test-service
+          uri: http://localhost:8080/
+          predicates:
+            - Path=/v1.0/tests/**
+          filters:
+            - name: TestFilter
+              args:
+                baseMessage: test test filter
+                preLogger: true
+                postLogger: true
+
+server:
+  port: 9090
+
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka
