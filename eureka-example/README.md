@@ -1,7 +1,7 @@
 # Discover Pattern
 ![images/pattern.png](images/pattern.png)
-- 클라이언트가 Load Balancer(Router)로 요청을 보내면 로드밸런서는 Service Registry에 서비스의 네트워크 주소를  Query해서 사용가능한 서비스로 요청을 전송한다.
-- 위와같이 Client가 직접 질의하지 않는것이 Service Side Discovery Pattern이고 Client가 직접 Service Registry로 질의하여 요청을 보내는 것이 Client Side Discovery Pattern이라고 한다.
+- 클라이언트가 Load Balancer(Router)로 요청을 보내면 로드밸런서는 Service Registry에 서비스의 네트워크 주소를 Query해서 사용가능한 서비스로 요청을 전송한다.
+- 위와같이 Client가 직접 질의하지 않는것이 Server Side Discovery Pattern이고 Client가 직접 Service Registry로 질의하여 요청을 보내는 것이 Client Side Discovery Pattern이라고 한다.
 - Client Side Discovery Pattern은 클라이언트가 사용 가능한 서비스를 알고 있기 때문에 서비스별로 알맞은 로드 밸런싱 방법을 선택할 수 있지만 클라이언트와 Service registry간 의존성이 생긴다는 단점이 있다. 또한 클리이언트 쪽에서 Service를 찾는 로직을 구현해야한다.
 - Server Side Discovery Pattern은 클라이언트 쪽에서 Service를 찾는 로직을 분리할 수 있지만 로드밸런서를 구축해야 하는 번거로움이 존재한다.
 
